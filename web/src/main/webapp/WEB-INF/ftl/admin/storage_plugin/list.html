@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>用户管理</title>
+	<title>管理</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
@@ -41,7 +41,6 @@
 	<aside class="main-sidebar">
 		<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
-			<!-- Sidebar user panel -->
 			[@user_panel /]
 			<!-- search form -->
 			[@sidebar_form /]
@@ -51,7 +50,7 @@
 				<li class="header">主面板</li>
 				[@menustag id=1]
 				[#list list as item]
-				[@menu item "1,8,9"]
+				[@menu item "1,22,24"]
 				[/@menu]
 				[/#list]
 				[/@menustag]
@@ -67,53 +66,47 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				用户管理
-				<small>管理你的用户</small>
+				信息列表
+				<small></small>
 			</h1>
 		</section>
 		<!-- Main content -->
 		<section class="content">
-
 			<!-- Default box -->
-			<div class="col-xs-12">
-				<div class="box box-default box-solid">
-					<div class="box-header with-border">
-						<h3 class="box-title">添加用户</h3>
+			<form id="listForm" action="${siteurl}admin/resume/view_list.htm" method="post">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box box-solid">
+							<div class="box-body table-responsive no-padding">
+								<table class="table table-bordered table-hover dataTable">
+									<thead>
+									<tr role="row">
+										<td class="col-xs-2">插件名称</td>
+										<td class="col-xs-1 text-center">版本</td>
+										<td class="col-xs-5 text-center">作者</td>
+										<td class="col-xs-2 text-center">状态</td>
+										<td class="col-xs-2 text-center">操作</td>
+									</tr>
+									</thead>
+									<tbody>
+									[#list storagePlugins as item]
+									<tr id="trr${item.id}">
+										<td>${item.name!""}</td>
+										<td class="text-center">${item.version!""}</td>
+										<td class="">${item.author!""}</td>
+										<td class="text-center">[#if item.isInstalled]已安装[#else]未安装[/#if]</td>
+										<td class="text-center">
+										</td>
+									</tr>
+									[/#list]
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-					<!-- /.box-header -->
-					<!-- form start -->
-					<form class="form-horizontal" action="${siteurl}admin/degree/model_save.htm" method="post">
-						<div class="box-body">
-							<div class="form-group">
-								<label for="username" class="col-sm-2 control-label">用户名</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="username" name="username" placeholder="用户名" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="name" class="col-sm-2 control-label">姓名</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="name" name="name" placeholder="姓名" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label  class="col-sm-2 control-label" for="password">密码</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="password" name="plainPassword"  placeholder="密码" type="password">
-								</div>
-							</div>
-						</div>
-						<!-- /.box-body -->
-						<div class="box-footer">
-							<a href="${siteurl}admin/degree/view_list.htm" class="btn btn-default">取消</a>
-							<button type="submit" class="btn btn-primary pull-right">注册</button>
-						</div>
-						<!-- /.box-footer -->
-					</form>
 				</div>
-			</div>
+			</form>
 			<!-- /.box -->
-
 		</section>
 		<!-- /.content -->
 	</div>
@@ -143,5 +136,16 @@
 <script src="${siteurl}dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="${siteurl}dist/js/demo.js"></script>
+<script src="${siteurl}dist/js/list.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        [#if erro??]
+        alert("${erro}");
+        [/#if]
+    });
+</script>
+
 </body>
 </html>

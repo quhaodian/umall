@@ -76,65 +76,32 @@
 			<form id="listForm" action="${siteurl}admin/resume/view_list.htm" method="post">
 				<div class="row">
 					<div class="col-xs-12">
-						<div class=" box box-body">
-							<div class="col-xs-2 ">
-								<a class="btn btn-primary" href="${siteurl}admin/resume/view_add.htm">
-									<i class="fa  fa-plus"></i> 添加
-								</a>
-							</div>
-							<div class="col-xs-10 " style="padding-left: 0;">
-								<button type="submit" name="search" class="btn btn-success pull-right">
-									<i class="fa fa-search"></i> 搜索
-								</button>
-								<div class="col-xs-4 pull-right">
-									<input name="name" value="${(so.name)!''}" maxlength="20" class="form-control" placeholder="名称搜索..." type="text">
-								</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-xs-12">
 						<div class="box box-solid">
 							<div class="box-body table-responsive no-padding">
 								<table class="table table-bordered table-hover dataTable">
 									<thead>
 									<tr role="row">
-										<td class="col-xs-2">用户名</td>
-										<td class="col-xs-1 text-center">姓名</td>
-										<td class="col-xs-5 text-center">url</td>
-										<td class="col-xs-2 text-center">更新时间</td>
+										<td class="col-xs-2">插件名称</td>
+										<td class="col-xs-1 text-center">版本</td>
+										<td class="col-xs-5 text-center">作者</td>
+										<td class="col-xs-2 text-center">状态</td>
 										<td class="col-xs-2 text-center">操作</td>
 									</tr>
 									</thead>
 									<tbody>
-									[#list list as item]
+									[#list pushPlugins as item]
 									<tr id="trr${item.id}">
-										<td>${item.username!""}</td>
-										<td class="text-center">${item.name!""}</td>
-										<td class="">${item.path!""}</td>
-										<td class="text-center">${(item.lastDate?string('yyyy-MM-dd HH:mm:ss'))!''}</td>
+										<td>${item.name!""}</td>
+										<td class="text-center">${item.version!""}</td>
+										<td class="">${item.author!""}</td>
+										<td class="text-center">[#if item.isInstalled]已安装[#else]未安装[/#if]</td>
 										<td class="text-center">
-											<div style="display: inline-block;">
-												[@shiro.hasPermission name="resume:update"]
-												<a  class="menubutton btn btn-sm btn-success"
-													href="${siteurl}admin/resume/view_edit.htm?id=${item.id}&pageNumber=${page.pageNumber!'1'}">
-													<i class="fa fa-edit">更新</i>
-												</a>
-												[/@shiro.hasPermission]
-												[@shiro.hasPermission name="resume:delete"]
-												<a  class="menubutton btn btn-sm btn-danger"  onclick="return confirm('删除后无法恢复,确定要删除吗')"
-													href="${siteurl}admin/resume/model_delete.htm?id=${item.id}&pageNumber=${page.pageNumber!'1'}">
-													<i class="fa fa-trash">删除</i>
-												</a>
-												[/@shiro.hasPermission]
-											</div>
 										</td>
 									</tr>
 									[/#list]
 									</tbody>
 								</table>
 							</div>
-							[@pager page=page   /]
 						</div>
 				    </div>
 			    </div>
