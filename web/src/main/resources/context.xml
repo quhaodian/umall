@@ -78,7 +78,7 @@
                 <entry key="link" value-ref="linkDirective"/>
                 <entry key="linkType" value-ref="linkTypeDirective"/>
                 <entry key="siteurl" value="#{servletContext.contextPath}/"/>
-                <entry key="sitename" value="寻鹰"/>
+                <entry key="sitename" value="优商城"/>
             </map>
         </property>
     </bean>
