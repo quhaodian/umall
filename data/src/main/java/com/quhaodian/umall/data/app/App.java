@@ -1,4 +1,4 @@
-package com.quhaodian.umall;
+package com.quhaodian.umall.data.app;
 
 import com.ada.imake.ChainMake;
 import com.ada.imake.template.hibernate.TemplateHibernateDir;
