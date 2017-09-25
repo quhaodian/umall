@@ -42,7 +42,6 @@
 		<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
 			<!-- Sidebar user panel -->
-			<!-- Sidebar user panel -->
 			[@user_panel /]
 			<!-- search form -->
 			[@sidebar_form /]
@@ -52,7 +51,7 @@
 				<li class="header">主面板</li>
 				[@menustag id=1]
 				[#list list as item]
-				[@menu item "1,5,8"]
+				[@menu item "1,2,8"]
 				[/@menu]
 				[/#list]
 				[/@menustag]
@@ -83,50 +82,31 @@
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
-					<form class="form-horizontal" action="${siteurl}admin/invoiceheader/model_update.htm" method="post">
-						<input type="hidden" name="id" value="${model.id}">
-						<input type="hidden" name="pageNumber" value="${pageNumber!'1'}">
+					<form class="form-horizontal" action="${siteurl}admin/userrolecatalog/model_save.htm" method="post">
 						<div class="box-body">
 							<div class="form-group">
-								<label for="name" class="col-sm-2 control-label">公司名称</label>
+								<label for="username" class="col-sm-2 control-label">用户名</label>
 								<div class="col-sm-10">
-									<input class="form-control" id="name" value="${(model.name)!''}" name="name" placeholder="公司名称" type="text">
+									<input class="form-control" id="username" name="username" placeholder="用户名" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label  class="col-sm-2 control-label" for="address">公司地址</label>
+								<label for="name" class="col-sm-2 control-label">姓名</label>
 								<div class="col-sm-10">
-									<input class="form-control" id="address"  value="${(model.address)!''}" name="address"  placeholder="公司地址" type="text">
+									<input class="form-control" id="name" name="name" placeholder="姓名" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label  class="col-sm-2 control-label" for="phone">联系电话</label>
+								<label  class="col-sm-2 control-label" for="password">密码</label>
 								<div class="col-sm-10">
-									<input class="form-control" id="phone"   value="${(model.phone)!''}" name="phone"  placeholder="联系电话" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label  class="col-sm-2 control-label" for="no">纳税人识别号</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="no"   value="${(model.no)!''}" name="no"  placeholder="纳税人识别号" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label  class="col-sm-2 control-label" for="bankName">开户行名称</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="bankName"  value="${(model.bankName)!''}" name="bankName"  placeholder="开户行名称" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label  class="col-sm-2 control-label" for="bankAccount">开户行账号</label>
-								<div class="col-sm-10">
-									<input class="form-control" id="bankAccount"   value="${(model.bankAccount)!''}" name="bankAccount"  placeholder="开户行账号" type="text">
+									<input class="form-control" id="password" name="plainPassword"  placeholder="密码" type="password">
 								</div>
 							</div>
 						</div>
 						<!-- /.box-body -->
 						<div class="box-footer">
-							<button type="submit" class="btn btn-primary pull-right">更新</button>
+							<a href="${siteurl}admin/userrolecatalog/view_list.htm" class="btn btn-default">取消</a>
+							<button type="submit" class="btn btn-primary pull-right">注册</button>
 						</div>
 						<!-- /.box-footer -->
 					</form>
