@@ -117,7 +117,7 @@
         </property>
     </bean>
     <mvc:annotation-driven
-            ignore-default-model-on-redirect="true"></mvc:annotation-driven>
+            ignore-default-model-on-redirect="false"></mvc:annotation-driven>
     <mvc:interceptors>
         <ref bean="openSessionInViewInterceptor"/>
     </mvc:interceptors>
