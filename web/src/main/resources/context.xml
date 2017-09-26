@@ -39,6 +39,9 @@
     </bean>
     <bean id="jacksonMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+    <bean
+            class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+    </bean>
 
 
     <bean id="shiro" class="com.jagregory.shiro.freemarker.ShiroTags"></bean>
@@ -117,12 +120,27 @@
             <ref bean="sessionFactory"/>
         </property>
     </bean>
-    <mvc:annotation-driven
-            ignore-default-model-on-redirect="false"></mvc:annotation-driven>
+
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="false"/>
+        <property name="favorParameter" value="false"/>
+        <property name="ignoreAcceptHeader" value="false"/>
+        <property name="mediaTypes">
+            <value>
+                atom=application/atom+xml
+                html=text/html
+                json=application/json
+                *=*/*
+            </value>
+        </property>
+    </bean>
+
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"
+            ignore-default-model-on-redirect="true"></mvc:annotation-driven>
     <mvc:interceptors>
         <ref bean="openSessionInViewInterceptor"/>
     </mvc:interceptors>
-
+    <mvc:default-servlet-handler />
 
     <import resource="context-shiro.xml"/>
 
