@@ -97,4 +97,5 @@
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
 		<property name="cacheManager" ref="cacheManagerFactory" />
 	</bean>
+
 </beans>

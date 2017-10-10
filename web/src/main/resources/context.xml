@@ -93,9 +93,10 @@
                   value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
         <property name="suffix" value=".html"/>
         <property name="contentType" value="text/html;charset=UTF-8"/>
-        <property name="exposeRequestAttributes" value="false"/>
-        <property name="exposeSessionAttributes" value="false"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
         <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="requestContextAttribute" value="request"/>
     </bean>
     <!-- 将Controller抛出的异常转到特定View, 保持SiteMesh的装饰效果 -->
     <!-- <prop key="java.lang.Throwable">error/500</prop> -->
@@ -151,5 +152,7 @@
         <property name="queueCapacity" value="${task.queue_capacity}"/>
         <property name="keepAliveSeconds" value="${task.keep_alive_seconds}"/>
     </bean>
+
+
 
 </beans>
