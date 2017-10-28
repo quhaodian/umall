@@ -17,6 +17,7 @@
 	<context:component-scan base-package="com.ada.web.data" />
 	<context:component-scan base-package="com.ada.article.data" />
 	<context:component-scan base-package="com.ada.plug.data" />
+	<context:component-scan base-package="com.ada.activiti.data" />
 
 
 
@@ -73,6 +74,7 @@
 				<value>com.ada.article.data.entity</value>
 				<value>com.quhaodian.umall.data.entity</value>
 				<value>com.ada.plug.data.entity</value>
+				<value>com.ada.activiti.data.entity</value>
 			</list>
 		</property>
 		<property name="entityInterceptor" ref="treeInterceptor">

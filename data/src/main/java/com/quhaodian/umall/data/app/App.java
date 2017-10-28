@@ -1,5 +1,6 @@
 package com.quhaodian.umall.data.app;
 
+import com.ada.activiti.data.entity.Act;
 import com.ada.imake.ChainMake;
 import com.ada.imake.template.hibernate.TemplateHibernateDir;
 import com.ada.imake.templates.adminlte.TemplateAdminLTE;
@@ -20,12 +21,12 @@ public class App
         ChainMake make = new ChainMake(TemplateAdminLTE.class, TemplateHibernateDir.class);
         make.setAction("com.quhaodian.umall.controller.admin");
         make.setView(file);
-        make.setDao(true);
-        make.setService(true);
-        make.setAction(true);
+        make.setDao(false);
+        make.setService(false);
+        make.setAction(false);
         make.setView(true);
-        make.setMenus("1,22,39");
+        make.setMenus("1,12,14");
         // UserOauthToken.
-        make.makes(Member.class);
+        make.makes(Act.class);
     }
 }

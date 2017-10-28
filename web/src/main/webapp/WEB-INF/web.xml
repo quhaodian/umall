@@ -36,6 +36,16 @@
       <param-value>true</param-value>
     </init-param>
   </filter>
+
+  <!-- Activiti diagram-view callback filter-->
+  <filter>
+    <filter-name>JSONPFilter</filter-name>
+    <filter-class>com.ada.activiti.controller.servlet.JsonpCallbackFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>JSONPFilter</filter-name>
+    <url-pattern>/act/service/*</url-pattern>
+  </filter-mapping>
   <filter>
     <filter-name>SimpleCORSFilter</filter-name>
     <filter-class>com.ada.user.web.filter.SimpleCORSFilter</filter-class>
@@ -77,7 +87,10 @@
     <servlet-name>dispatcher</servlet-name>
     <url-pattern>*.json</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
   <session-config>
     <session-timeout>3600</session-timeout>
   </session-config>
