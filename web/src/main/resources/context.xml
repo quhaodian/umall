@@ -14,7 +14,8 @@
 
 
     <!--COOKIE登录 -->
-    <bean name="webconfig" class="com.ada.web.data.common.InitConfig" init-method="initWebConfig" scope="singleton" lazy-init="false"></bean>
+    <bean name="webconfig" class="com.ada.web.data.common.InitConfig" init-method="initWebConfig" scope="singleton"
+          lazy-init="false"></bean>
 
     <context:component-scan base-package="com.quhaodian.umall.controller"/>
     <context:component-scan base-package="com.ada.user.controller"/>
@@ -114,7 +115,7 @@
     </bean>
 
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-        <property name="mediaTypes" >
+        <property name="mediaTypes">
             <map>
                 <entry key="xml" value="application/xml"/>
                 <entry key="json" value="application/json"/>
@@ -125,17 +126,20 @@
     </bean>
 
     <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"
-            ignore-default-model-on-redirect="true">
+                           ignore-default-model-on-redirect="true">
 
         <mvc:message-converters register-defaults="true">
             <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                <constructor-arg value="UTF-8" />
+                <constructor-arg value="UTF-8"/>
             </bean>
             <!-- 将Jackson2HttpMessageConverter的默认格式化输出为false -->
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="supportedMediaTypes">
-                    <list><value>application/json;charset=UTF-8</value></list>
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>text/html; charset=UTF-8</value>
+                    </list>
                 </property>
                 <property name="prettyPrint" value="false"/>
                 <property name="objectMapper">
@@ -147,7 +151,7 @@
     <mvc:interceptors>
         <ref bean="openSessionInViewInterceptor"/>
     </mvc:interceptors>
-    <mvc:default-servlet-handler />
+    <mvc:default-servlet-handler/>
     <mvc:resources mapping="/bootstrap/**" location="/bootstrap/" cache-period="31536000"/>
     <mvc:resources mapping="/dist/**" location="/dist/" cache-period="31536000"/>
     <mvc:resources mapping="/plugins/**" location="/plugins/" cache-period="31536000"/>
@@ -163,7 +167,6 @@
         <property name="queueCapacity" value="${task.queue_capacity}"/>
         <property name="keepAliveSeconds" value="${task.keep_alive_seconds}"/>
     </bean>
-
 
 
 </beans>

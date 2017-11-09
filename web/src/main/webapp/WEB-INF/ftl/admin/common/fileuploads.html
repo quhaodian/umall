@@ -1,6 +1,5 @@
 <script type="text/javascript"
         src="${siteurl}plugins/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="${siteurl}plugins/js/jsrender.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${siteurl}plugins/webuploader/webuploader.css">
 
 [#macro fileinput name image=""]
@@ -104,7 +103,7 @@
 
         ${name}filepickerobj.on('uploadAccept', function(file, response) {
 
-            if (response.message.type == "success") {
+            if (response.code == 0) {
                 // 通过return false来告诉组件，此文件上传有错。
                 $("#${name}id").val(response.url);
                 //alert(response.url);

@@ -28,17 +28,17 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
-<div class="wrapper">
+	<div class="wrapper">
 
-	<header class="main-header">
-		<!-- Header Navbar: style can be found in header.less -->
-		[#include "/admin/common/nav.html"]
-	</header>
+		<header class="main-header">
+			<!-- Header Navbar: style can be found in header.less -->
+			[#include "/admin/common/nav.html"]
+		</header>
 
 	<!-- =============================================== -->
 
 	<!-- Left side column. contains the sidebar -->
-	<aside class="main-sidebar">
+		<aside class="main-sidebar">
 		<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
 			[@user_panel /]
@@ -49,10 +49,10 @@
 			<ul class="sidebar-menu">
 				<li class="header">主面板</li>
 				[@menustag id=1]
-				[#list list as item]
-				[@menu item "1,15,17"]
-				[/@menu]
-				[/#list]
+					[#list list as item]
+						[@menu item "1,15,16"]
+						[/@menu]
+					[/#list]
 				[/@menustag]
 			</ul>
 		</section>
@@ -62,7 +62,7 @@
 	<!-- =============================================== -->
 
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
+		<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
@@ -91,7 +91,7 @@
 									</tr>
 									</thead>
 									<tbody>
-									[#list storagePlugins as item]
+									[#list sendCodePlugins as item]
 									<tr id="trr${item.id}">
 										<td>${item.name!""}</td>
 										<td class="text-center">${item.version!""}</td>
@@ -101,12 +101,12 @@
 										<td class="text-center">[#if item.isInstalled]已安装[#else]未安装[/#if]</td>
 										<td class="text-center">
 											[#if item.isInstalled]
-												[#if item.settingUrl??]
-												<a href="${siteurl}${item.settingUrl}">设置</a>
-												[/#if]
-												[#if item.uninstallUrl??]
-												<a href="${siteurl}${item.uninstallUrl}" class="uninstall">卸载</a>
-												[/#if]
+											[#if item.settingUrl??]
+											<a href="${siteurl}${item.settingUrl}">设置</a>
+											[/#if]
+											[#if item.uninstallUrl??]
+											<a href="${siteurl}${item.uninstallUrl}" class="uninstall">卸载</a>
+											[/#if]
 											[#else]
 											[#if item.installUrl??]
 											<a href="${siteurl}${item.installUrl}" class="install">安装</a>
@@ -136,7 +136,7 @@
 	<!-- /.control-sidebar -->
 	<!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->
-	<div class="control-sidebar-bg"></div>
+		<div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 

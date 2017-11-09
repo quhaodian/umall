@@ -50,7 +50,7 @@
 				<li class="header">主面板</li>
 				[@menustag id=1]
 					[#list list as item]
-						[@menu item "1,22,24"]
+						[@menu item "1,15,18"]
 						[/@menu]
 					[/#list]
 				[/@menustag]
@@ -83,8 +83,10 @@
 									<tr role="row">
 										<td class="col-xs-2">插件名称</td>
 										<td class="col-xs-1 text-center">版本</td>
-										<td class="col-xs-5 text-center">作者</td>
-										<td class="col-xs-2 text-center">状态</td>
+										<td class="col-xs-1 text-center">作者</td>
+										<td class="col-xs-4 text-center">网址</td>
+										<td class="col-xs-1 text-center">是否启用</td>
+										<td class="col-xs-1 text-center">状态</td>
 										<td class="col-xs-2 text-center">操作</td>
 									</tr>
 									</thead>
@@ -94,8 +96,22 @@
 										<td>${item.name!""}</td>
 										<td class="text-center">${item.version!""}</td>
 										<td class="">${item.author!""}</td>
+										<td class="">${item.siteUrl!""}</td>
+										<td class="text-center">[#if item.isEnabled]启用[#else]禁用[/#if]</td>
 										<td class="text-center">[#if item.isInstalled]已安装[#else]未安装[/#if]</td>
 										<td class="text-center">
+											[#if item.isInstalled]
+											[#if item.settingUrl??]
+											<a href="${siteurl}${item.settingUrl}">设置</a>
+											[/#if]
+											[#if item.uninstallUrl??]
+											<a href="${siteurl}${item.uninstallUrl}" class="uninstall">卸载</a>
+											[/#if]
+											[#else]
+											[#if item.installUrl??]
+											<a href="${siteurl}${item.installUrl}" class="install">安装</a>
+											[/#if]
+											[/#if]
 										</td>
 									</tr>
 									[/#list]
@@ -103,8 +119,8 @@
 								</table>
 							</div>
 						</div>
-				    </div>
-			    </div>
+					</div>
+				</div>
 			</form>
 			<!-- /.box -->
 		</section>
