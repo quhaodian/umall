@@ -25,8 +25,8 @@
 		<!-- 自定义用户权限 ，必须重新实现用户和组的相应方法-->
 		<property name="customSessionFactories"> 
 			<list>
-				<bean class="com.ada.activiti.data.service.ext.ActUserEntityServiceFactory"/>
-				<bean class="com.ada.activiti.data.service.ext.ActGroupEntityServiceFactory"/>
+				<bean class="com.quhaodian.activiti.data.service.ext.ActUserEntityServiceFactory"/>
+				<bean class="com.quhaodian.activiti.data.service.ext.ActGroupEntityServiceFactory"/>
 			</list>
 		</property>
 		

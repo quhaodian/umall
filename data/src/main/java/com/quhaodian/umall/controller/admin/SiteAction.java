@@ -1,6 +1,6 @@
 package com.quhaodian.umall.controller.admin;
 
-import com.ada.data.page.Pageable;
+import com.quhaodian.data.page.Pageable;
 import com.quhaodian.umall.data.so.MemberSo;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;

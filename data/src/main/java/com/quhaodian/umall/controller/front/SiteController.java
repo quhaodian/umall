@@ -1,10 +1,10 @@
 package com.quhaodian.umall.controller.front;
 
-import com.ada.user.data.entity.UserAccount;
-import com.ada.user.data.service.UserAccountService;
-import com.ada.user.data.vo.UserAccountVo;
-import com.ada.user.enums.AccountType;
-import com.ada.web.controller.front.BaseController;
+import com.quhaodian.user.data.entity.UserAccount;
+import com.quhaodian.user.data.service.UserAccountService;
+import com.quhaodian.user.data.vo.UserAccountVo;
+import com.quhaodian.user.enums.AccountType;
+import com.quhaodian.web.controller.front.BaseController;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;

@@ -40,7 +40,7 @@
   <!-- Activiti diagram-view callback filter-->
   <filter>
     <filter-name>JSONPFilter</filter-name>
-    <filter-class>com.ada.activiti.controller.servlet.JsonpCallbackFilter</filter-class>
+    <filter-class>com.quhaodian.activiti.controller.servlet.JsonpCallbackFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>JSONPFilter</filter-name>
@@ -48,7 +48,7 @@
   </filter-mapping>
   <filter>
     <filter-name>SimpleCORSFilter</filter-name>
-    <filter-class>com.ada.user.web.filter.SimpleCORSFilter</filter-class>
+    <filter-class>com.quhaodian.user.web.filter.SimpleCORSFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>SimpleCORSFilter</filter-name>

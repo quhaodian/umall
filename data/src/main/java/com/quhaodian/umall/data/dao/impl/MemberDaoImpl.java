@@ -1,10 +1,10 @@
 package com.quhaodian.umall.data.dao.impl;
 
+import com.quhaodian.data.core.CriteriaDaoImpl;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ada.data.core.CriteriaDaoImpl;
 import com.quhaodian.umall.data.dao.MemberDao;
 import com.quhaodian.umall.data.entity.Member;
 

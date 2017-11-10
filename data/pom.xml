@@ -35,33 +35,33 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.ada.discover</groupId>
-            <artifactId>discover_user_hibernate</artifactId>
-            <version>1.5.0</version>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>user_hibernate</artifactId>
+            <version>1.5.2</version>
         </dependency>
         <dependency>
-            <groupId>com.ada.discover</groupId>
-            <artifactId>discover_site_hibernate</artifactId>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>site_hibernate</artifactId>
             <version>1.1.9</version>
         </dependency>
         <dependency>
-            <groupId>com.ada.area</groupId>
-            <artifactId>discover_area_hibernate</artifactId>
-            <version>1.1.8</version>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>area</artifactId>
+            <version>1.1.9</version>
         </dependency>
         <dependency>
-            <groupId>com.ada.web</groupId>
-            <artifactId>discover_website</artifactId>
-            <version>1.1.8</version>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>website</artifactId>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
-            <groupId>com.ada.article</groupId>
-            <artifactId>discover_article</artifactId>
-            <version>1.1.8</version>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>article</artifactId>
+            <version>1.1.9</version>
         </dependency>
         <dependency>
-            <groupId>com.ada.activiti</groupId>
-            <artifactId>discover_activiti</artifactId>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>activiti</artifactId>
             <version>1.2.2</version>
         </dependency>
         <dependency>

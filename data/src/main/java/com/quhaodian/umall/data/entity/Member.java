@@ -1,6 +1,7 @@
 package com.quhaodian.umall.data.entity;
 
-import com.ada.user.data.entity.AbstractUser;
+
+import com.quhaodian.user.data.entity.AbstractUser;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

@@ -14,17 +14,17 @@
 
 
     <!--COOKIE登录 -->
-    <bean name="webconfig" class="com.ada.web.data.common.InitConfig" init-method="initWebConfig" scope="singleton"
+    <bean name="webconfig" class="com.quhaodian.web.data.common.InitConfig" init-method="initWebConfig" scope="singleton"
           lazy-init="false"></bean>
 
     <context:component-scan base-package="com.quhaodian.umall.controller"/>
-    <context:component-scan base-package="com.ada.user.controller"/>
-    <context:component-scan base-package="com.ada.site.controller"/>
-    <context:component-scan base-package="com.ada.area.controller"/>
-    <context:component-scan base-package="com.ada.web.controller"/>
-    <context:component-scan base-package="com.ada.article.controller"/>
-    <context:component-scan base-package="com.ada.plug.controller"/>
-    <context:component-scan base-package="com.ada.activiti.controller"/>
+    <context:component-scan base-package="com.quhaodian.user.controller"/>
+    <context:component-scan base-package="com.quhaodian.site.controller"/>
+    <context:component-scan base-package="com.quhaodian.area.controller"/>
+    <context:component-scan base-package="com.quhaodian.web.controller"/>
+    <context:component-scan base-package="com.quhaodian.article.controller"/>
+    <context:component-scan base-package="com.quhaodian.plug.controller"/>
+    <context:component-scan base-package="com.quhaodian.activiti.controller"/>
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
@@ -37,11 +37,11 @@
 
 
     <bean id="shiro" class="com.jagregory.shiro.freemarker.ShiroTags"></bean>
-    <bean id="menuOpenDirective" class="com.ada.user.freemaker.MenuOpenDirective"></bean>
-    <bean id="menusDirective" class="com.ada.user.freemaker.MenusDirective"></bean>
-    <bean id="menuChildsDirective" class="com.ada.user.freemaker.MenuChildsDirective"></bean>
-    <bean id="linkDirective" class="com.ada.site.freemaker.LinkDirective"></bean>
-    <bean id="linkTypeDirective" class="com.ada.site.freemaker.LinkTypeDirective"></bean>
+    <bean id="menuOpenDirective" class="com.quhaodian.user.freemaker.MenuOpenDirective"></bean>
+    <bean id="menusDirective" class="com.quhaodian.user.freemaker.MenusDirective"></bean>
+    <bean id="menuChildsDirective" class="com.quhaodian.user.freemaker.MenuChildsDirective"></bean>
+    <bean id="linkDirective" class="com.quhaodian.site.freemaker.LinkDirective"></bean>
+    <bean id="linkTypeDirective" class="com.quhaodian.site.freemaker.LinkTypeDirective"></bean>
 
 
     <!-- freemarker的配置 -->

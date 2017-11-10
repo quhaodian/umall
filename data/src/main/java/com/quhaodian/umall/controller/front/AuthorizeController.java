@@ -1,7 +1,7 @@
 package com.quhaodian.umall.controller.front;
 
-import com.ada.site.data.service.AppService;
-import com.ada.web.controller.front.BaseController;
+import com.quhaodian.site.data.service.AppService;
+import com.quhaodian.web.controller.front.BaseController;
 import com.quhaodian.umall.data.service.OAuthService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.oltu.oauth2.as.issuer.MD5Generator;

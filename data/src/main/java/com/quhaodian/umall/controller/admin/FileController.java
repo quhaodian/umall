@@ -5,9 +5,9 @@
  */
 package com.quhaodian.umall.controller.admin;
 
-import com.ada.plug.Message;
-import com.ada.plug.data.service.StorageService;
-import com.ada.plug.data.vo.FileInfo;
+import com.quhaodian.plug.Message;
+import com.quhaodian.plug.data.service.StorageService;
+import com.quhaodian.plug.data.vo.FileInfo;
 import com.quhaodian.umall.data.vo.FileResponse;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class FileController   {
 
         FileResponse result=new FileResponse();
 		Map<String, Object> data = new HashMap<String, Object>();
-		String url = uploadLocal(fileType, file);
+		String url = storageService.upload(fileType, file);
         result.setUrl(url);
 		return result;
 	}

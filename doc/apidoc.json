@@ -1,0 +1,13 @@
+{
+  "name": "开一票",
+  "version": "0.0.1",
+  "description": "开一票接口",
+  "title": "开一票接口",
+  "url" : "http://localhost:8080/web/rest",
+  "sampleUrl": "http://localhost:8080/web/rest",
+  "template": {
+  	"withCompare": true,
+  	"withGenerator": true,
+    "forceLanguage":"zh_cn"
+  }
+}

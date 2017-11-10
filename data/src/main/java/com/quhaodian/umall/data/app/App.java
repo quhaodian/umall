@@ -1,10 +1,10 @@
 package com.quhaodian.umall.data.app;
 
-import com.ada.activiti.data.entity.Act;
-import com.ada.imake.ChainMake;
-import com.ada.imake.template.hibernate.TemplateHibernateDir;
-import com.ada.imake.templates.adminlte.TemplateAdminLTE;
-import com.ada.user.data.entity.UserAccount;
+import com.quhaodian.activiti.data.entity.Act;
+import com.quhaodian.imake.ChainMake;
+import com.quhaodian.imake.template.hibernate.TemplateHibernateDir;
+import com.quhaodian.imake.templates.adminlte.TemplateAdminLTE;
+import com.quhaodian.user.data.entity.UserAccount;
 import com.quhaodian.umall.data.entity.Member;
 
 import java.io.File;

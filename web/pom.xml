@@ -97,6 +97,11 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.quhaodian</groupId>
+            <artifactId>plug_alidayu</artifactId>
+            <version>1.2.0</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>web</finalName>
