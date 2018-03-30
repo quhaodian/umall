@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/cache   
+    http://www.springframework.org/schema/cache/spring-cache.xsd"
+       default-lazy-init="true">
+    <context:annotation-config/>
+    <context:component-scan base-package="com.quhaodian.user.data"/>
+    <context:component-scan base-package="com.quhaodian.site.data"/>
+    <context:component-scan base-package="com.quhaodian.area.data"/>
+    <context:component-scan base-package="com.quhaodian.web.data"/>
+    <context:component-scan base-package="com.quhaodian.article.data"/>
+    <context:component-scan base-package="com.quhaodian.plug"/>
+    <context:component-scan base-package="com.quhaodian.activiti.data"/>
+
+
+    <context:component-scan base-package="com.quhaodian.shiro"/>
+    <context:component-scan base-package="com.quhaodian.umall.data"/>
+
+
+    <context:component-scan base-package="com.quhaodian.user.rest"/>
+    <context:component-scan base-package="com.quhaodian.site.rest"/>
+    <context:component-scan base-package="com.quhaodian.area.rest"/>
+
+    <bean id="CodeServiceImpl" class="com.quhaodian.plug.data.service.impl.CodeServiceImpl">
+        <property name="attrs">
+            <map>
+                <entry key="register" value="SMS_78910259" />
+                <entry key="login" value="SMS_78910257" />
+                <entry key="binding" value="SMS_78910259" />
+                <entry key="init" value="SMS_74990022" />
+                <entry key="reset" value="SMS_78910254" />
+                <entry key="changePhone" value="SMS_75715139" />
+            </map>
+        </property>
+    </bean>
+    <!-- 对包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 需要更改 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="treeInterceptor" class="com.quhaodian.common.hibernate.TreeIntercptor"/>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+                hibernate.show_sql=true
+                hibernate.format_sql=true
+                hibernate.query.substitutions=true 1, false 0
+                hibernate.jdbc.batch_size=20
+                hibernate.hbm2ddl.auto=update
+            </value>
+        </property>
+        <property name="packagesToScan">
+            <list>
+                <value>com.quhaodian.user.data.entity</value>
+                <value>com.quhaodian.site.data.entity</value>
+                <value>com.quhaodian.area.data.entity</value>
+                <value>com.quhaodian.web.data.entity</value>
+                <value>com.quhaodian.article.data.entity</value>
+                <value>com.quhaodian.umall.data.entity</value>
+                <value>com.quhaodian.plug.data.entity</value>
+                <value>com.quhaodian.activiti.data.entity</value>
+            </list>
+        </property>
+        <property name="entityInterceptor" ref="treeInterceptor">
+        </property>
+    </bean>
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <tx:annotation-driven/>
+
+
+    <!-- 缓存 属性 -->
+    <bean id="cacheManagerFactory"
+          class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache.xml"/>
+        <property name="shared" value="true"/>
+    </bean>
+    <!-- 支持缓存注解 -->
+    <cache:annotation-driven cache-manager="cacheManager"/>
+    <!-- 默认是cacheManager -->
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="cacheManagerFactory"/>
+    </bean>
+
+</beans>

@@ -1,11 +1,11 @@
 package com.quhaodian.umall.data.app;
 
-import com.quhaodian.activiti.data.entity.Act;
 import com.quhaodian.imake.ChainMake;
 import com.quhaodian.imake.template.hibernate.TemplateHibernateDir;
 import com.quhaodian.imake.templates.adminlte.TemplateAdminLTE;
-import com.quhaodian.user.data.entity.UserAccount;
-import com.quhaodian.umall.data.entity.Member;
+import com.quhaodian.umall.data.entity.PhoneProduct;
+import com.quhaodian.umall.data.entity.Product;
+import com.quhaodian.umall.data.entity.RoomProduct;
 
 import java.io.File;
 
@@ -21,12 +21,15 @@ public class App
         ChainMake make = new ChainMake(TemplateAdminLTE.class, TemplateHibernateDir.class);
         make.setAction("com.quhaodian.umall.controller.admin");
         make.setView(file);
-        make.setDao(false);
-        make.setService(false);
+        make.setDao(true);
+        make.setService(true);
         make.setAction(false);
-        make.setView(true);
+        make.setView(false);
         make.setMenus("1,12,14");
         // UserOauthToken.
-        make.makes(Act.class);
+        make.makes(Product.class);
+        make.makes(RoomProduct.class);
+        make.makes(PhoneProduct.class);
+
     }
 }

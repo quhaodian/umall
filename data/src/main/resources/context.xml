@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd  
+            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd              
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+            http://www.springframework.org/schema/cache   
+            http://www.springframework.org/schema/cache/spring-cache.xsd
+            ">
+
+
+    <!--COOKIE登录 -->
+    <bean name="webconfig" class="com.quhaodian.web.data.common.InitConfig" init-method="initWebConfig" scope="singleton"
+          lazy-init="false"></bean>
+
+    <context:component-scan base-package="com.quhaodian.umall.controller"/>
+    <context:component-scan base-package="com.quhaodian.user.controller"/>
+    <context:component-scan base-package="com.quhaodian.site.controller"/>
+    <context:component-scan base-package="com.quhaodian.area.controller"/>
+    <context:component-scan base-package="com.quhaodian.web.controller"/>
+    <context:component-scan base-package="com.quhaodian.article.controller"/>
+    <context:component-scan base-package="com.quhaodian.plug.controller"/>
+    <context:component-scan base-package="com.quhaodian.activiti.controller"/>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="utf-8" p:maxUploadSize="100000000"/>
+
+
+    <bean
+            class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+    </bean>
+
+
+    <bean id="shiro" class="com.jagregory.shiro.freemarker.ShiroTags"></bean>
+    <bean id="menuOpenDirective" class="com.quhaodian.user.freemaker.MenuOpenDirective"></bean>
+    <bean id="menusDirective" class="com.quhaodian.user.freemaker.MenusDirective"></bean>
+    <bean id="menuChildsDirective" class="com.quhaodian.user.freemaker.MenuChildsDirective"></bean>
+    <bean id="linkDirective" class="com.quhaodian.site.freemaker.LinkDirective"></bean>
+    <bean id="linkTypeDirective" class="com.quhaodian.site.freemaker.LinkTypeDirective"></bean>
+
+
+    <!-- freemarker的配置 -->
+    <bean id="freemarkerConfigurer"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/ftl/"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="tag_syntax">square_bracket</prop>
+                <prop key="template_update_delay">5</prop>
+                <prop key="defaultEncoding">UTF-8</prop>
+                <prop key="url_escaping_charset">UTF-8</prop>
+                <prop key="locale">zh_CN</prop>
+                <prop key="boolean_format">true,false</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="time_format">HH:mm:ss</prop>
+                <prop key="number_format">0.######</prop>
+                <prop key="whitespace_stripping">true</prop>
+            </props>
+        </property>
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="shiro" value-ref="shiro"/>
+                <entry key="menuopentag" value-ref="menuOpenDirective"/>
+                <entry key="menustag" value-ref="menusDirective"/>
+                <entry key="menuchilds" value-ref="menuChildsDirective"/>
+                <entry key="link" value-ref="linkDirective"/>
+                <entry key="linkType" value-ref="linkTypeDirective"/>
+                <entry key="siteurl" value="#{servletContext.contextPath}/"/>
+                <entry key="sitename" value="优商城"/>
+            </map>
+        </property>
+    </bean>
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="suffix" value=".html"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="requestContextAttribute" value="request"/>
+    </bean>
+    <!-- 将Controller抛出的异常转到特定View, 保持SiteMesh的装饰效果 -->
+    <!-- <prop key="java.lang.Throwable">error/500</prop> -->
+    <bean
+            class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">/theme/default/403</prop>
+                <prop key="org.apache.shiro.authz.AuthorizationException">/theme/default/login</prop>
+            </props>
+        </property>
+    </bean>
+
+    <import resource="applicationContext.xml"/>
+
+    <!-- <import resource="context-shiro.xml" /> -->
+
+
+    <bean name="openSessionInViewInterceptor"
+          class="org.springframework.orm.hibernate5.support.OpenSessionInViewInterceptor">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="mediaTypes">
+            <map>
+                <entry key="xml" value="application/xml"/>
+                <entry key="json" value="application/json"/>
+            </map>
+        </property>
+        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="favorPathExtension" value="true"/>
+    </bean>
+
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"
+                           ignore-default-model-on-redirect="true">
+
+        <mvc:message-converters register-defaults="true">
+            <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <!-- 将Jackson2HttpMessageConverter的默认格式化输出为false -->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>text/html; charset=UTF-8</value>
+                    </list>
+                </property>
+                <property name="prettyPrint" value="false"/>
+                <property name="objectMapper">
+                    <bean class="com.quhaodian.umall.utils.JsonMapper"></bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <mvc:interceptors>
+        <ref bean="openSessionInViewInterceptor"/>
+    </mvc:interceptors>
+    <mvc:default-servlet-handler/>
+    <mvc:resources mapping="/bootstrap/**" location="/bootstrap/" cache-period="31536000"/>
+    <mvc:resources mapping="/dist/**" location="/dist/" cache-period="31536000"/>
+    <mvc:resources mapping="/plugins/**" location="/plugins/" cache-period="31536000"/>
+
+
+    <import resource="context-shiro.xml"/>
+    <import resource="context-activiti.xml"/>
+
+    <bean id="taskExecutor"
+          class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="${task.core_pool_size}"/>
+        <property name="maxPoolSize" value="${task.max_pool_size}"/>
+        <property name="queueCapacity" value="${task.queue_capacity}"/>
+        <property name="keepAliveSeconds" value="${task.keep_alive_seconds}"/>
+    </bean>
+
+
+</beans>

@@ -5,26 +5,19 @@
  */
 package com.quhaodian.umall.controller.admin;
 
-import com.quhaodian.plug.Message;
 import com.quhaodian.plug.data.service.StorageService;
 import com.quhaodian.plug.data.vo.FileInfo;
-import com.quhaodian.umall.data.vo.FileResponse;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Controller - 文件处理
@@ -58,4 +51,38 @@ public class FileController   {
 	}
 
 
+	public static class FileResponse implements Serializable {
+
+        private int code;
+
+
+        private String msg;
+
+
+        private String url;
+
+        public int getCode() {
+            return code;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public void setMsg(String msg) {
+            this.msg = msg;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+    }
 }
